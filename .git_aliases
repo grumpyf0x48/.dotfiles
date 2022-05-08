@@ -18,6 +18,7 @@ alias gu='git pull'
 alias gus='git fetch && git reset --hard origin/$(gsb)'
 
 alias gp='git push'
+alias gpsu='git push --set-upstream origin $(gsb)'
 alias gpf='git push --force-with-lease'
 
 if [[ ! $(type -f __git_complete 2>/dev/null) == function ]]; then
