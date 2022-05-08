@@ -8,6 +8,7 @@ alias gs='git status'
 alias gd='git diff'
 alias gdm='git diff master...$(gsb)'
 
+alias ga='git add -v'
 alias gaa='git add -v --all'
 
 alias gcm='git commit -v -m'
@@ -32,6 +33,8 @@ __git_complete gco _git_checkout
 
 __git_complete gs _git_status
 __git_complete gd _git_diff
+
+__git_complete ga _git_add
 
 __git_complete gu _git_pull
 
