@@ -6,6 +6,10 @@ function canonical_which() {
     fi
 }
 
+if [ -f ~/.git_aliases ]; then
+    . ~/.git_aliases
+fi
+
 alias bat='batcat'
 alias update='sudo apt update && sudo apt full-upgrade'
 alias which='canonical_which'
