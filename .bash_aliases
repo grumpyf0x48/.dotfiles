@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function canonical_which() {
     if [ "$1" = "-a" ]; then
         \which -a "$2"
