@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [ ! -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+    git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
+fi
+
+GIT_PROMPT_ONLY_IN_REPO=1
+GIT_PROMPT_THEME=Single_line_Solarized
+source $HOME/.bash-git-prompt/gitprompt.sh
+
+function prompt_callback {
+    gp_truncate_pwd
+}
