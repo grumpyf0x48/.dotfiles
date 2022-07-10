@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
 
-function canonical_which() {
-    if [ "$1" = "-a" ]; then
-        \which -a "$2"
-    else
-        readlink -e $(\which "$1")
+declare -a components=("system" "git" "custom")
+
+for component in "${components[@]}"; do
+    component_file="$HOME/.${component}_aliases"
+    if [ -f "$component_file" ]; then
+        if [ -x "$component_file" ]; then
+            . "$component_file"
+        else
+            echo "WARNING: Cannot source $component_file because it is not executable !" >&2
+        fi
     fi
-}
-
-if [ -f ~/.git_aliases ]; then
-    . ~/.git_aliases
-fi
-
-alias bat='batcat'
-alias update='sudo apt update && sudo apt full-upgrade'
-alias which='canonical_which'
+done
