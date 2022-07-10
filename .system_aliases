@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+ulimit -c unlimited
+
 alias update='sudo apt update && sudo apt full-upgrade'
 
 function canonical_which() {
