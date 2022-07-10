@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+alias update='sudo apt update && sudo apt full-upgrade'
+
+function canonical_which() {
+    if [ "$1" = "-a" ]; then
+        \which -a "$2"
+    else
+        readlink -e $(\which "$1")
+    fi
+}
+alias which='canonical_which'
+
+if command -v bat &> /dev/null; then
+    alias bat='batcat'
+fi
