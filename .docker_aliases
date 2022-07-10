@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-alias dcs='docker container prune -f && docker rmi $(docker images | grep "^<none>" | awk '\''{print $3}'\'' )'
-alias dcf='docker container prune -f && docker rmi -f $(docker images| awk '\''{print $3}'\'' )'
