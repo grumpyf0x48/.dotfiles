@@ -46,12 +46,6 @@ __git_complete gp _git_push
 
 __git_complete gl _git_log
 
-if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-    GIT_PROMPT_ONLY_IN_REPO=1
-    GIT_PROMPT_THEME=Single_line_Solarized
-    source $HOME/.bash-git-prompt/gitprompt.sh
-
-    function prompt_callback {
-        gp_truncate_pwd
-    }
+if [ -f ~/.git_prompt_aliases ]; then
+    . ~/.git_prompt_aliases
 fi
