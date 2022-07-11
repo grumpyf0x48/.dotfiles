@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-declare -a components=("system" "git" "custom")
+declare -a components=("system" "git" "tmux" "custom")
 
 for component in "${components[@]}"; do
     component_file="$HOME/.${component}_aliases"
