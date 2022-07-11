@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-ulimit -c unlimited
+export EDITOR=vi
+export HISTTIMEFORMAT='%F %T'
 
 alias update='sudo apt update && sudo apt full-upgrade'
 
