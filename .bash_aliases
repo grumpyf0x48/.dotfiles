@@ -5,10 +5,10 @@ declare -a components=(system git tmux custom)
 for component in "${components[@]}"; do
     component_file="$HOME/.${component}_aliases"
     if [ -f "$component_file" ]; then
-        if [ -x "$component_file" ]; then
+        if [ -r "$component_file" ]; then
             . "$component_file"
         else
-            echo "WARNING: Cannot source $component_file because it is not executable !" >&2
+            echo "WARNING: Skipping $component_file because it is not readable." >&2
         fi
     fi
 done
