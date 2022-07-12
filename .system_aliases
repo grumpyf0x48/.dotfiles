@@ -14,6 +14,6 @@ function canonical_which() {
 }
 alias which='canonical_which'
 
-if command -v bat; then
+if command -v batcat; then
     alias bat='batcat'
 fi
