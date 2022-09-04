@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-declare -a components=(system git tmux jbang custom)
+declare -a components=(system git tmux java jbang custom)
 
 for component in "${components[@]}"; do
     component_file="$HOME/.${component}_aliases"
