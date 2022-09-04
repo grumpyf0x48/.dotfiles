@@ -10,5 +10,6 @@ GIT_PROMPT_THEME=Single_line_Solarized
 source $HOME/.bash-git-prompt/gitprompt.sh
 
 function prompt_callback {
-    gp_truncate_pwd
+    let size="$(tput cols) / 3"
+    gp_truncate_pwd "$size"
 }
