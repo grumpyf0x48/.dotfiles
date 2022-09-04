@@ -9,6 +9,7 @@ all-diff: ## Show diff between repository and installed files in $HOME
 	@FILE=.git_aliases make -s diff
 	@FILE=.git_prompt_aliases make -s diff
 	@FILE=.tmux_aliases make -s diff
+	@FILE=.jbang_aliases make -s diff
 
 diff: check ## Show diff between repository and installed file in $HOME
 	@diff --normal $(FILE) ${HOME}/$(basename $(FILE))
@@ -19,6 +20,7 @@ all-install: ## Install all dotfiles in $HOME
 	FILE=.git_aliases make -s install
 	FILE=.git_prompt_aliases make -s install
 	FILE=.tmux_aliases make -s install
+	FILE=.jbang_aliases make -s install
 
 install: check ## Install one dotfile in $HOME
 	cp --verbose --update --interactive $(FILE) ${HOME}
