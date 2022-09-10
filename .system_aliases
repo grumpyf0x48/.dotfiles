@@ -3,8 +3,8 @@
 export EDITOR=vi
 
 export HISTCONTROL=erasedups:ignorespace
+export HISTSIZE=100
 export HISTTIMEFORMAT='%F %T '
-export HISTSIZE=25
 
 alias update='sudo apt update && sudo apt full-upgrade'
 
