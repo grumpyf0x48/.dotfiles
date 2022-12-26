@@ -3,10 +3,10 @@
 export EDITOR=vi
 
 export HISTCONTROL=erasedups:ignorespace
-export HISTSIZE=100
 export HISTTIMEFORMAT='%F %T '
+export HISTSIZE=100
 
-alias update='sudo apt update && sudo apt full-upgrade'
+alias update='sudo apt update && sudo apt upgrade'
 
 function canonical_which() {
     if [ "$1" = "-a" ]; then
@@ -20,3 +20,14 @@ alias which='canonical_which'
 if command -v batcat >/dev/null; then
     alias bat='batcat'
 fi
+
+if [[ -x "$HOME/Programs/umlet/Umlet/umlet.sh" ]]; then
+    alias umlet='~/Programs/umlet/Umlet/umlet.sh'
+fi
+
+function paged_jq() {
+    # -F tell less exit if output content can be displayed on one screen
+    # See: https://github.com/stedolan/jq/issues/764#issuecomment-379688272
+    jq -C "$@" | less -FR
+}
+alias jq='paged_jq'
