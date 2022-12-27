@@ -30,4 +30,4 @@ function paged_jq() {
     # See: https://github.com/stedolan/jq/issues/764#issuecomment-379688272
     jq -C "$@" | less -FR
 }
-alias jq='paged_jq'
+alias pjq='paged_jq'
