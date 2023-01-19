@@ -12,6 +12,7 @@ all-diff: ## Show diff between repository and installed files in $HOME
 	@FILE=.jbang_aliases make -s diff
 
 diff: check ## Show diff between repository and installed file in $HOME
+	echo "Diffing $(FILE)"
 	@diff --normal $(FILE) ${HOME}/$(basename $(FILE))
 
 all-install: ## Install all dotfiles in $HOME
