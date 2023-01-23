@@ -6,6 +6,9 @@ export HISTCONTROL=erasedups:ignorespace
 export HISTTIMEFORMAT='%F %T '
 export HISTSIZE=100
 
+alias c='clear'
+alias h='history'
+alias ports='netstat -tulanp'
 alias update='sudo apt update && sudo apt upgrade'
 
 function canonical_which() {
@@ -23,6 +26,11 @@ fi
 
 if [[ -x "$HOME/Programs/umlet/Umlet/umlet.sh" ]]; then
     alias umlet='~/Programs/umlet/Umlet/umlet.sh'
+fi
+
+if [ -d "$HOME/.sdkman" ]; then
+    export SDKMAN_DIR="$HOME/.sdkman"
+    [ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 fi
 
 function paged_jq() {
