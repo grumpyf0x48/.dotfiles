@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export JAVA_11_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
+export JAVA_11_HOME=/usr/lib/jvm/zulu11-ca-amd64/
 if command -v jbang_run_itests >/dev/null; then
     alias jbang_run_itests='JAVA_HOME=$JAVA_11_HOME PATH=$JAVA_HOME/bin:$PATH \jbang_run_itests'
 fi
