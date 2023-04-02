@@ -22,6 +22,8 @@ alias which='canonical_which'
 
 if command -v batcat >/dev/null; then
     alias bat='batcat'
+    alias cat='bat -pp'
+    alias less='bat -p'
 fi
 
 if [[ -x "$HOME/Programs/umlet/Umlet/umlet.sh" ]]; then
