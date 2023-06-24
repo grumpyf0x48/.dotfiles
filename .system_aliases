@@ -50,5 +50,4 @@ function remove_failed_or_unknown_command_from_history() {
         history -d $HISTCMD
     fi
 }
-
 trap remove_failed_or_unknown_command_from_history ERR
