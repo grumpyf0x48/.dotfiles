@@ -32,7 +32,9 @@ fi
 
 if [ -d "$HOME/.sdkman" ]; then
     export SDKMAN_DIR="$HOME/.sdkman"
-    [ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+    if [ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]; then
+        source "$SDKMAN_DIR/bin/sdkman-init.sh"
+    fi
 fi
 
 function paged_jq() {
@@ -41,3 +43,10 @@ function paged_jq() {
     jq --color-output "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS
 }
 alias pjq='paged_jq'
+
+function hist_rm_unknown_command() {
+    if [ $? -eq 127 ]; then
+        history -d $HISTCMD
+    fi
+}
+trap hist_rm_unknown_command ERR
