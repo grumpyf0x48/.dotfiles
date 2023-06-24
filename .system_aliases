@@ -44,9 +44,11 @@ function paged_jq() {
 }
 alias pjq='paged_jq'
 
-function hist_rm_unknown_command() {
-    if [ $? -eq 127 ]; then
+function remove_failed_or_unknown_command_from_history() {
+    rc=$?
+    if  [ $rc -eq 127 ] || [ $rc -eq 255 ]; then
         history -d $HISTCMD
     fi
 }
-trap hist_rm_unknown_command ERR
+
+trap remove_failed_or_unknown_command_from_history ERR
