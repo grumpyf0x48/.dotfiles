@@ -26,14 +26,16 @@ if command -v batcat >/dev/null; then
     alias less='bat --style=plain'
 fi
 
-if [ -x "$HOME/Programs/umlet/Umlet/umlet.sh" ]; then
-    alias umlet='~/Programs/umlet/Umlet/umlet.sh'
+umlet_path="$HOME/Programs/umlet/Umlet/umlet.sh"
+if [ -x "$umlet_path" ]; then
+    alias umlet="$umlet_path"
 fi
 
 if [ -d "$HOME/.sdkman" ]; then
     export SDKMAN_DIR="$HOME/.sdkman"
-    if [ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]; then
-        source "$SDKMAN_DIR/bin/sdkman-init.sh"
+    sdkman_path="$SDKMAN_DIR/bin/sdkman-init.sh"
+    if [ -x "$sdkman_path" ]; then
+        source "$sdkman_path"
     fi
 fi
 
@@ -47,7 +49,7 @@ alias pjq='paged_jq'
 function remove_failed_or_unknown_command_from_history() {
     rc=$?
     if  [ $rc -eq 127 ] || [ $rc -eq 255 ]; then
-        history -d $HISTCMD
+        history -d "$HISTCMD"
     fi
 }
 trap remove_failed_or_unknown_command_from_history ERR
