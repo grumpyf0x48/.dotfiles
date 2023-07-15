@@ -6,6 +6,7 @@ help:
 all-diff: ## Show diff between repository and installed files in $HOME
 	@FILE=.bash_aliases make -s diff
 	@FILE=.system_aliases make -s diff
+	@FILE=.ssh_aliases make -s diff
 	@FILE=.git_aliases make -s diff
 	@FILE=.git_prompt_aliases make -s diff
 	@FILE=.tmux_aliases make -s diff
@@ -18,6 +19,7 @@ diff: check ## Show diff between repository and installed file in $HOME
 all-install: ## Install all dotfiles in $HOME
 	FILE=.bash_aliases make -s install
 	FILE=.system_aliases make -s install
+	FILE=.ssh_aliases make -s install
 	FILE=.git_aliases make -s install
 	FILE=.git_prompt_aliases make -s install
 	FILE=.tmux_aliases make -s install

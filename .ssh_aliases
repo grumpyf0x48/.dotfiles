@@ -1,0 +1,84 @@
+#!/bin/bash
+
+function ssh_echodo() {
+    if [ -n "${GENERATE}" ]; then
+        generate_cmd "$@"
+    else
+        run_cmd "$@"
+    fi
+}
+
+function generate_cmd() {
+    echo "$@"
+}
+
+function run_cmd() {
+    printf "[DEBUG] Starting command: %s" "$1"
+    for arg in "${@:2}"; do
+        printf " '%s'" "$arg"
+    done
+    printf "\n"
+    "$@"
+}
+
+function is_hostname() {
+    [[ "$1" == *.local ]]
+}
+
+function is_file() {
+    if [[ "$1" == -* ]]; then
+        # Is an option
+        return 1
+    fi
+    if [[ "$1" == */ ]]; then
+        # Is a folder
+        return 1
+    fi
+    dirname=$(readlink -e "$(dirname "$1")")
+    if [ "${dirname}" != "${PWD}" ]; then
+        # Not in current folder
+        return 1
+    fi
+    if command "$1" >/dev/null 2>&1; then
+        # Is a command
+        return 1
+    fi
+}
+
+function parse_ssh_cmd_args() {
+    all_files=()
+    in_files=()
+    out_files=()
+    for arg in "$@"; do
+        if $(is_hostname "$arg"); then
+            host="$arg"
+        elif $(is_file "$arg"); then
+            all_files+=("$arg")
+            if [ -r "$arg" ]; then
+                in_files+=("$arg")
+            else
+                out_files+=("$arg")
+            fi
+        fi
+    done
+}
+
+function ssh_with_auto_scp() {
+    parse_ssh_cmd_args "$@"
+
+    if [ ${#in_files[@]} -ge 1 ]; then
+        ssh_echodo scp -q "${in_files[@]}" "${host}":.
+    fi
+
+    ssh_echodo ssh "$@"
+
+    for out_file in "${out_files[@]}"; do
+        ssh_echodo scp -q "${host}":"${out_file}" "${out_file}"
+    done
+
+    if [ ${#all_files[@]} -ge 1 ]; then
+        ssh_echodo ssh "${host}" rm "${all_files[@]}"
+    fi
+}
+
+alias ssh_with_auto_scp='ssh_with_auto_scp'
