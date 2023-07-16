@@ -16,10 +16,7 @@ function ssh_run_cmd() {
         done
         printf "\n" >&2
     fi
-    if ! "$@"; then
-        echo "[ERROR] Failed to start command: $1 !" >&2
-        return 1
-    fi
+    "$@" || return 1
 }
 
 function ssh_is_hostname() {
