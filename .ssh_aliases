@@ -67,13 +67,13 @@ function ssh_with_auto_scp() {
     parse_ssh_cmd_args "$@"
 
     if [ ${#in_files[@]} -ge 1 ]; then
-        ssh_echodo scp -q "${in_files[@]}" "${host}":.
+        ssh_echodo scp "${in_files[@]}" "${host}":.
     fi
 
     ssh_echodo ssh "$@"
 
     for out_file in "${out_files[@]}"; do
-        ssh_echodo scp -q "${host}":"${out_file}" "${out_file}"
+        ssh_echodo scp "${host}":"${out_file}" "${out_file}"
     done
 
     if [ ${#all_files[@]} -ge 1 ]; then
