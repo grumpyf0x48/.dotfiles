@@ -83,7 +83,7 @@ function ssh_with_auto_scp() {
         ssh_echodo scp "${in_files[@]}" "${host}":. || return 1
     fi
 
-    ssh_echodo ssh "$@"
+    ssh_echodo ssh "$@" || return 1
 
     for out_file in "${out_files[@]}"; do
         ssh_echodo scp "${host}":"${out_file}" "${out_file}" || return 1
