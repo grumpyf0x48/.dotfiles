@@ -4,8 +4,7 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 diff: check ## Show diff between repository and installed file in $HOME
-	echo "Diffing $(FILE)"
-	@diff --normal $(FILE) ${HOME}/$(FILE)
+	diff --normal $(FILE) ${HOME}/$(FILE)
 
 diff-all: ## Show diff between repository and installed files in $HOME
 	@FILE=.bash_aliases make -s diff
