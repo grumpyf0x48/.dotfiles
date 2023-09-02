@@ -54,11 +54,3 @@ function paged_jq() {
     jq --color-output "$@" | less --quit-if-one-screen --RAW-CONTROL-CHARS
 }
 alias pjq='paged_jq'
-
-function remove_failed_or_unknown_command_from_history() {
-    rc=$?
-    if  [ $rc -eq 127 ] || [ $rc -eq 255 ]; then
-        history -d "$HISTCMD"
-    fi
-}
-trap remove_failed_or_unknown_command_from_history ERR
