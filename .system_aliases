@@ -35,6 +35,11 @@ if command -v batcat >/dev/null; then
     alias less='bat --style=plain'
 fi
 
+z_path="$HOME/.z.sh"
+if [ -x "$z_path" ]; then
+    source "$z_path"
+fi
+
 umlet_path="$HOME/Programs/umlet/Umlet/umlet.sh"
 if [ -x "$umlet_path" ]; then
     alias umlet="$umlet_path"
