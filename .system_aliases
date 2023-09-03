@@ -8,7 +8,10 @@ export HISTSIZE=100
 
 alias c='clear'
 alias h='history'
-alias ports='netstat -tulanp'
+
+alias ports='netstat -tanp'
+alias listen='netstat -tanp | grep LISTEN'
+
 alias update='sudo apt update && sudo apt upgrade && sudo apt autoremove'
 
 function canonical_which() {
