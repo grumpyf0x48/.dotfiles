@@ -27,7 +27,7 @@ alias gpsu='git push --set-upstream origin $(gsb)'
 alias gpf='git push --force-with-lease'
 
 alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"'
-alias gls='git log --pretty=format:"%h %s"'
+alias gls='git log --pretty=format:"%Cred%h%Creset - %s"'
 
 if [[ ! $(type -f __git_complete 2>/dev/null) == function ]]; then
     . /usr/share/bash-completion/completions/git
